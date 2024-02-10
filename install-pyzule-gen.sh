@@ -8,7 +8,7 @@ fi
 
 echo "[*] installing pyzule-gen.."
 sudo curl -so /usr/local/bin/pyzule-gen https://raw.githubusercontent.com/asdfzxcvbn/pyzule-gen/main/pyzule-gen.py
-if [ "$OS" == "Linux" ]; then
+if [ "$(uname)" == "Linux" ]; then
     sudo sed -i "1s|.*|#\!${PZ_DIR}/venv/bin/python|" /usr/local/bin/pyzule-gen
 else
     sudo sed -e "1s|.*|#\!${PZ_DIR}/venv/bin/python|" -i "" /usr/local/bin/pyzule-gen  # bsd sed is broken asf
