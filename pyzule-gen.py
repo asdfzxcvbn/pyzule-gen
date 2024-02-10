@@ -102,7 +102,13 @@ with ZipFile(args.o, "w", ZIP_DEFLATED, compresslevel=4) as zf:
 
     if args.f:
         for i in args.f:
-            zf.write(i, f"inject/{os.path.basename(i)}")
+            if os.path.isfile(i):
+                zf.write(i, f"inject/{os.path.basename(i)}")
+            else:  # i fucking hate the zipfile module.
+                for dp, _, files in os.walk(i):
+                    for f in files:
+                        thing = os.path.join(dp, f)
+                        zf.write(thing, f"inject/{os.path.relpath(thing, os.path.dirname(i))}")
 
     if args.k:
         with Image.open(args.k) as img, zf.open("icon.png", "w") as new:
