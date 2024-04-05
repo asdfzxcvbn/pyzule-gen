@@ -12,4 +12,4 @@ a tool to generate .pyzule files
 2. install dependencies: `apk update && apk add python3 curl`
 3. install `pyzule-gen`:
 
-   `bash -c "$(curl https://raw.githubusercontent.com/asdfzxcvbn/pyzule-gen/main/install-pyzule-gen-ish.sh)"`
+   `ash -c "$(curl https://raw.githubusercontent.com/asdfzxcvbn/pyzule-gen/main/install-pyzule-gen-ish.sh)"`
