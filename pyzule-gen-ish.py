@@ -94,7 +94,7 @@ used = {k: v for k, v in real_args.items() if v}
 print("[*] generating..")
 with ZipFile(args.o, "w", ZIP_DEFLATED, compresslevel=4) as zf:
     with zf.open("config.json", "w") as f:
-        json.dump(used, f)
+        f.write(json.dumps(used).encode('utf-8'))
 
     if args.f:
         for i in args.f:
