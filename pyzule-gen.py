@@ -44,6 +44,8 @@ parser.add_argument("-g", action="store_true",
                     help="remove encrypted extensions")
 parser.add_argument("-p", action="store_true",
                     help="inject into @executable_path")
+parser.add_argument("-q", action="store_true",
+                    help="thin all binaries to arm64")
 parser.add_argument("-t", action="store_true",
                     help="use substitute instead of substrate")
 args = parser.parse_args()
@@ -64,7 +66,9 @@ elif args.f and (nonexistent := ", ".join(ne for ne in args.f if not os.path.exi
         print(f"[!] {nonexistent} does not exist")
     else:
         print(f"[!] {nonexistent} do not exist")
-    exit(1) 
+    exit(1)
+elif args.q and not args.s:
+    parser.error("thinning relies on -s, sorry not sorry")
 
 
 @atexit.register
